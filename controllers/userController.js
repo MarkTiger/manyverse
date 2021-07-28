@@ -10,7 +10,8 @@ class Controller {
     User.findByPk(userId, {
       attributes: [
         "first_name",
-        "last_name"
+        "last_name",
+        "status"
       ]
     })
       .then(userData => {
@@ -145,6 +146,44 @@ class Controller {
     Post.destroy({
       where: {
         id: postId
+      }
+    })
+      .then(() => {
+        res.redirect("/user")
+      })
+      .catch(err => {
+        res.send(err)
+      })
+  }
+
+  static setStatus(req, res) {
+    const userId = req.session.userId
+
+    User.findByPk(userId, {
+      attributes: [
+        "status"
+      ]
+    })
+      .then(user => {
+        res.render("setStatus", {
+          user
+        })
+      })
+      .catch(err => {
+        res.send(err)
+      })
+  }
+
+  static setStatusPost(req, res) {
+    const userId = req.session.userId
+    const {status} = req.body
+    const formData = {
+      status
+    }
+
+    User.update(formData, {
+      where: {
+        id: userId
       }
     })
       .then(() => {

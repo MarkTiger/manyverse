@@ -22,4 +22,8 @@ router.post("/post/:id/edit", isAuthorized, upload.single("cover"), Controller.e
 
 router.get("/post/:id/delete", isAuthorized, Controller.deletePost)
 
+router.get("/status", Controller.setStatus)
+
+router.post("/status", Controller.setStatusPost)
+
 module.exports = router
