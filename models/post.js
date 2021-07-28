@@ -63,27 +63,31 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-
+        notEmpty: {
+          msg: "Cover cannot be empty"
+        },
+        notNull: {
+          msg: "Cover cannot be empty"
+        }
       }
     },
     message: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-
+        notEmpty: {
+          msg: "Message cannot be empty"
+        },
+        notNull: {
+          msg: "Message cannot be empty"
+        }
       }
     },
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-
-      }
+      allowNull: false
     },
   }, {
-    hooks: {
-
-    },
     sequelize,
     modelName: 'Post',
   });

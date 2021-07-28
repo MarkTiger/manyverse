@@ -18,12 +18,8 @@ router.post("/newpost", upload.single("cover"), Controller.newPostPost)
 
 router.get("/post/:id/edit", isAuthorized, Controller.editPost)
 
-router.post("/post/:id/edit", isAuthorized, Controller.editPostPost)
+router.post("/post/:id/edit", isAuthorized, upload.single("cover"), Controller.editPostPost)
 
 router.get("/post/:id/delete", isAuthorized)
-
-// router.post("/test", upload.single('test'), (req, res) => {
-//   res.type("png").send(req.file)
-// })
 
 module.exports = router

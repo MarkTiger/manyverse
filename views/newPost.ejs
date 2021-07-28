@@ -10,6 +10,12 @@
 <body>
   <h2>New Post</h2>
 
+  <% if (errMsgs) { %>
+    <% errMsgs.split(",").forEach(errMsg => { %>
+      <p><%= errMsg %></p>
+    <% }) %>
+  <% } %>
+
   <form action="/user/newpost" method="post" enctype="multipart/form-data">
     <label for="cover">Post Cover (image file): </label><br>
     <input type="file" name="cover" id="cover"><br>

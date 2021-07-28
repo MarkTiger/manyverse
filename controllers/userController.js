@@ -31,44 +31,112 @@ class Controller {
   }
 
   static newPost(req, res) {
-    res.render("newPost")
+    const errMsgs = req.query.err || null
+    res.render("newPost", {
+      errMsgs
+    })
   }
 
   static newPostPost(req, res) {
-    const coverBuffer = req.file.buffer
+    const coverBuffer = req.file ? req.file.buffer : null
     const { message } = req.body
-    const user_id = req.session.userId
+    const userId = req.session.userId
 
-
-  const uploadStream = cloudinary.uploader.upload_stream((error, result) => {
-    console.log(error)
-    console.log(result)
-
-    const url = result.url
-    const formData = {
-      cover: url,
-      message,
-      user_id
+    if (coverBuffer) {
+      const uploadStream = cloudinary.uploader.upload_stream((error, result) => {
+        console.log(error)
+        console.log(result)
+    
+        const url = result.url
+        const formData = {
+          cover: url,
+          message,
+          user_id: userId
+        }
+    
+        Post.create(formData)
+          .then(() => {
+            res.redirect("/")
+          })
+          .catch(err => {
+            err = err.errors.map(error => error.message)
+            res.redirect(`/user/newpost?err=${err.join(",")}`)
+          })
+      })
+    
+      streamifier.createReadStream(coverBuffer).pipe(uploadStream)
+    } else {
+      const error = "Please select an image first"
+      res.redirect(`/user/newpost?err=${error}`)
     }
+  }
 
-    Post.create(formData)
-      .then(() => {
-        res.redirect("/")
+  static editPost(req, res) {
+    const postId = Number(req.params.id)
+    const errMsgs = req.query.err || null
+
+    Post.findByPk(postId)
+      .then(post => {
+        res.render("editPost", {
+          post,
+          errMsgs
+        })
       })
       .catch(err => {
         res.send(err)
       })
-  })
-
-  streamifier.createReadStream(coverBuffer).pipe(uploadStream)
-  }
-
-  static editPost(req, res) {
-    res.render("editPost")
   }
 
   static editPostPost(req, res) {
+    const postId = Number(req.params.id)
+    const userId = req.session.userId
+    const { message, isChange } = req.body
+    const formData = {
+      message,
+      user_id: userId
+    }
 
+    const coverBuffer = req.file ? req.file.buffer : null
+    if (!coverBuffer && isChange) {
+      const error = "Please select an image first"
+      res.redirect(`/user/post/${postId}/edit?err=${error}`)
+    } else if (isChange) {
+      const uploadStream = cloudinary.uploader.upload_stream((error, result) => {
+        console.log(error)
+        console.log(result)
+    
+        const url = result.url
+        formData.cover = url
+    
+        Post.update(formData, {
+          where: {
+            id: postId
+          }
+        })
+          .then(() => {
+            res.redirect("/user")
+          })
+          .catch(err => {
+            err = err.errors.map(error => error.message)
+            res.redirect(`/user/post/${postId}/edit?err=${err.join(",")}`)
+          })
+      })
+      
+      streamifier.createReadStream(coverBuffer).pipe(uploadStream)
+    } else {
+      Post.update(formData, {
+        where: {
+          id: postId
+        }
+      })
+        .then(() => {
+          res.redirect("/user")
+        })
+        .catch(err => {
+          err = err.errors.map(error => error.message)
+          res.redirect(`/user/post/${postId}/edit?err=${err.join(",")}`)
+        })
+    }
   }
 }
 

@@ -9,5 +9,21 @@
 </head>
 <body>
   <h2>Edit Post</h2>
+
+  <% if (errMsgs) { %>
+    <% errMsgs.split(",").forEach(errMsg => { %>
+      <p><%= errMsg %></p>
+    <% }) %>
+  <% } %>
+
+  <form action="/user/post/<%= post.id %>/edit" method="post" enctype="multipart/form-data">
+    <input type="checkbox" id="isChange" name="isChange" value="true">
+    <label for="isChange">Change post cover</label><br>
+    <label for="cover">Post Cover (image file): </label><br>
+    <input type="file" name="cover" id="cover"><br>
+    <label for="message">Post Message: </label><br>
+    <textarea name="message" id="message" cols="30" rows="4" placeholder="e.g: Wonderful Indonesia"></textarea><br>
+    <input type="submit" value="Post">
+  </form>
 </body>
 </html>
