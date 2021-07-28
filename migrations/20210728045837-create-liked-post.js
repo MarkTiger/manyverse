@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('LikedPosts', {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable('LikedPosts', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -38,7 +38,7 @@ module.exports = {
       }
     });
   },
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('LikedPosts');
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable('LikedPosts');
   }
 };

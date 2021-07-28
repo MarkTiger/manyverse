@@ -30,7 +30,6 @@ class Controller {
           if (isPassMatch) {
             req.session.userId = user.id
             req.session.isLogin = true
-            console.log(req.session)
             res.redirect("/")
           } else {
           res.redirect(`/login?err=${errMsg}`)

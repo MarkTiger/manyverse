@@ -44,6 +44,7 @@ body {
 .post-box img {
   width: 600px;
   height: 600px;
+  border-radius: 10px 10px 0 0;
 }
 
 .post-box a,
@@ -52,6 +53,6 @@ body {
   padding: 5px;
   background-color: #00976a;
   color: white;
-  font-size: 12px;
   border-radius: 4px;
+  box-shadow: 0 1px 2px 0 #000000ab;
 }

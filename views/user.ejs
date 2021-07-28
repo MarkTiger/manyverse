@@ -1,0 +1,20 @@
+<h2>Posts</h2>
+
+<% posts.forEach(post => { %>
+  <div class="post-box">
+    <span style="color: white;"><%= post.User.getFullname() %></span>
+    <div class="post-inner-box">
+      <div>
+        <img src="<%= post.cover %>" alt="post image" />
+        <div>
+          <a href="/post/<%= post.id %>/like">Like<span style="color: #71ffd0;"><%= post.dataValues.likeCount %></span></a>
+          <a href="/user/post/<%= post.id %>/edit">Edit</a>
+          <a href="/user/post/<%= post.id %>/delete">Delete</a>
+        </div>
+      </div>
+      <p>
+        <%= post.message %>
+      </p>
+  </div>
+  </div>
+<% }) %>

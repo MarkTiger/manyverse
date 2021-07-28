@@ -25,8 +25,13 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
 
-    static getPostsWithLikeCount(User, LikedPost) {
+    static getPostsWithLikeCount(User, LikedPost, userId) {
+      const where = {}
+      if (userId) {
+        where.user_id = userId
+      }
       return Post.findAll({
+        where,
         attributes: [
           "id",
           "cover",
@@ -46,7 +51,10 @@ module.exports = (sequelize, DataTypes) => {
             attributes: []
           }
         ],
-        group: ["Post.id", "User.id"]
+        group: ["Post.id", "User.id"],
+        order: [
+          ["updatedAt", "DESC"]
+        ]
       })
     }
   };

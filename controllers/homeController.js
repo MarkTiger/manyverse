@@ -3,7 +3,7 @@ const { Post, LikedPost, User } = require("../models")
 
 class Controller {
   static getHome(req, res) {
-    const userId = Number(req.session.userId)
+    const userId = req.session.userId
     let user
 
     User.findByPk(userId, {
@@ -12,11 +12,11 @@ class Controller {
         "last_name"
       ]
     })
-    .then(userData => {
-      user = userData
-      
-      return Post.getPostsWithLikeCount(User, LikedPost)
-    })
+      .then(userData => {
+        user = userData
+        
+        return Post.getPostsWithLikeCount(User, LikedPost)
+      })
       .then(posts => {
         res.render("index", {
           page: "home",
