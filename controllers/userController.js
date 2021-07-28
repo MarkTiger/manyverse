@@ -138,6 +138,22 @@ class Controller {
         })
     }
   }
+
+  static deletePost(req, res) {
+    const postId = req.params.id
+
+    Post.destroy({
+      where: {
+        id: postId
+      }
+    })
+      .then(() => {
+        res.redirect("/user")
+      })
+      .catch(err => {
+        res.send(err)
+      })
+  }
 }
 
 module.exports = Controller

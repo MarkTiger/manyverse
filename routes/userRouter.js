@@ -20,6 +20,6 @@ router.get("/post/:id/edit", isAuthorized, Controller.editPost)
 
 router.post("/post/:id/edit", isAuthorized, upload.single("cover"), Controller.editPostPost)
 
-router.get("/post/:id/delete", isAuthorized)
+router.get("/post/:id/delete", isAuthorized, Controller.deletePost)
 
 module.exports = router
