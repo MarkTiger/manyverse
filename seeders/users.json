@@ -1,0 +1,16 @@
+[
+  {
+    "first_name": "Jaka",
+    "last_name": "Saja",
+    "email": "jakasaja@email.id",
+    "password": "password1",
+    "status": ""
+  },
+  {
+    "first_name": "Joko",
+    "last_name": "Doang",
+    "email": "jokodoang@email.id",
+    "password": "password2",
+    "status": ""
+  }
+]

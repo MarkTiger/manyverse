@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manyverse</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="page-container">
+    <h1>Manyverse</h1>
+    <div>
+      <span>Current user: <%= user.getFullname() %></span>
+    </div>
+    <span>Links:</span>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/user">User</a></li>
+    </ul>
+
+    <% if (page === "home") { %>
+      <%- include("./home.ejs") %>
+    <% } else if (page === "user") { %>
+      <%- include("./user.ejs") %>
+    <% } %>
+  </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+[
+  {
+    "cover": "http:",
+    "message": "First post",
+    "user_id": 1
+  },
+  {
+    "cover": "http:",
+    "message": "My Post",
+    "user_id": 2
+  }
+]

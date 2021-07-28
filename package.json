@@ -1,0 +1,30 @@
+{
+  "name": "manyverse",
+  "version": "1.0.0",
+  "description": "Instagram like social media",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkTiger/manyverse.git"
+  },
+  "author": "Marco Tiger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarkTiger/manyverse/issues"
+  },
+  "homepage": "https://github.com/MarkTiger/manyverse#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cloudinary": "^1.26.2",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "multer": "^1.4.2",
+    "pg": "^8.7.1",
+    "sequelize": "^6.6.5"
+  }
+}

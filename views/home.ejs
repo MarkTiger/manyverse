@@ -1,0 +1,21 @@
+<h2>Posts</h2>
+
+<% posts.forEach(post => { %>
+  <div class="post-box">
+    <span style="color: white;"><%= post.User.getFullname() %></span>
+    <div class="post-inner-box">
+      <div>
+        <img src="<%= post.cover %>" alt="post image" />
+        <a href="/post/<%= post.id %>/like">Like<span style="color: #71ffd0;"><%= post.dataValues.likeCount %></span></a>
+      </div>
+      <p>
+        <%= post.message %>
+      </p>
+  </div>
+  </div>
+<% }) %>
+
+<!-- <form action="/test" method="POST" enctype="multipart/form-data">
+  <input type="file" name="test" id="test">
+  <input type="submit" value="upload">
+</form> -->
