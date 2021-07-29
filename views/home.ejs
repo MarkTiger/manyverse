@@ -1,12 +1,10 @@
-<h2>Posts</h2>
-
 <% posts.forEach(post => { %>
-  <div class="post-box">
-    <span style="color: white;"><%= post.User.getFullname() %></span>
+  <div class="post-box" id="post-<%= post.id %>">
+    <span style="color: white;"><%= post.User.getFullname() %><span style="color: #8fffd4;"><%= formatDate(post.createdAt) %></span></span>
     <div class="post-inner-box">
-      <div>
-        <img src="<%= post.cover %>" alt="post image" />
-        <a href="/post/<%= post.id %>/like">Like<span style="color: #71ffd0;"><%= post.dataValues.likeCount %></span></a>
+      <img src="<%= post.cover %>" alt="post image" />
+      <div class="action-btn">
+        <a class="btn" href="/post/<%= post.id %>/like">Like<span style="color: #71ffd0;"><%= post.dataValues.likeCount %></span></a>
       </div>
       <p>
         <%= post.message %>

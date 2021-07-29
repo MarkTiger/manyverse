@@ -8,20 +8,21 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <h1>Login</h1>
+  <div id="page-container">
+    <h1 style="color: #c6fff3;">Login</h1>
+    <% if (errMsg) { %>
+      <p style="color: red;"><%= errMsg %></p>
+    <% } %>
 
-  <% if (errMsg) { %>
-    <p><%= errMsg %></p>
-  <% } %>
+    <form class="my-form" action="/login" method="post">
+      <label for="email">Email</label><br>
+      <input type="email" name="email" id="email"><br>
+      <label for="password">Password</label><br>
+      <input type="password" name="password" id="password"><br>
+      <button type="submit">Login</button>
+    </form>
 
-  <form action="/login" method="post">
-    <label for="email">Email</label><br>
-    <input type="email" name="email" id="email"><br>
-    <label for="password">Password</label><br>
-    <input type="password" name="password" id="password"><br>
-    <input type="submit" value="Login">
-  </form>
-
-  <span>Don't have an account? <a style="color: white; text-decoration: underline;" href="/register">Register</a></span>
+    <span>Don't have an account? <a style="color: white; text-decoration: underline;" href="/register">Register</a></span>
+  </div>
 </body>
 </html>

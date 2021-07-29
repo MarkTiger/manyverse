@@ -1,4 +1,6 @@
 'use strict';
+const { hashPassword } = require("../helpers/hashPassword")
+
 const {
   Model
 } = require('sequelize');
@@ -67,7 +69,10 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING
   }, {
     hooks: {
-
+      beforeCreate(instance, options) {
+        instance.status = "Hey, there! I'm using Manyverse!"
+        instance.password = hashPassword(instance.password)
+      }
     },
     sequelize,
     modelName: 'User',

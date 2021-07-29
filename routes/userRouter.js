@@ -26,4 +26,6 @@ router.get("/status", Controller.setStatus)
 
 router.post("/status", Controller.setStatusPost)
 
+router.get("/logout", Controller.logout)
+
 module.exports = router

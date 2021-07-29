@@ -18,6 +18,30 @@ module.exports = (sequelize, DataTypes) => {
       LikedPost.belongsTo(models.Post, {
         foreignKey: "post_id"
       })
+
+    }
+
+    static likeThisYo(userId, postId) {
+      const formData = {
+        user_id: userId,
+        post_id: postId
+      }
+
+      return LikedPost.findOne({
+        where: formData
+      })
+        .then(foundPost => {
+          if (foundPost) {
+            return LikedPost.destroy({
+              where: formData
+            })
+          } else {
+            return LikedPost.create(formData)
+          }
+        })
+        .catch(err => {
+          return Promise.reject(err)
+        })
     }
   };
   LikedPost.init({

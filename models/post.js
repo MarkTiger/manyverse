@@ -32,12 +32,11 @@ module.exports = (sequelize, DataTypes) => {
       }
       return Post.findAll({
         where,
-        attributes: [
-          "id",
-          "cover",
-          "message",
-          [sequelize.fn("COUNT", sequelize.col("LikedPosts.id")), "likeCount"]
-        ],
+        attributes: {
+          include: [
+            [sequelize.fn("COUNT", sequelize.col("LikedPosts.id")), "likeCount"]
+          ]
+        },
         include: [
           {
             model: User,

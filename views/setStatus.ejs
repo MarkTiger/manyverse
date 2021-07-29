@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-  <form action="/user/status" method="post">
-    <label for="status">Set status: </label><br>
-    <input style="width: 300px;" type="text" name="status" id="status" placeholder="e.g: Coding is my middle name"><br>
-    <input type="submit" value="Set">
-  </form>
-</body>
-</html>
+<form class="my-form" action="/user/status" method="post">
+  <label for="status">Set status: </label><br><br>
+  <input type="text" name="status" id="status" value="<%= user.status %>" placeholder="e.g: Coding is my middle name"><br>
+  <button type="submit">Set</button>
+</form>

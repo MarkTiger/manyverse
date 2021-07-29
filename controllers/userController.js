@@ -1,4 +1,5 @@
 const { User, Post, LikedPost } = require("../models")
+const formatDate = require("../helpers/formatDate")
 const cloudinary = require("../config/cloudinary")
 const streamifier = require("streamifier")
 
@@ -23,7 +24,8 @@ class Controller {
         res.render("index", {
           page: "user",
           user,
-          posts
+          posts,
+          formatDate
         })
       })
       .catch(err => {
@@ -32,10 +34,26 @@ class Controller {
   }
 
   static newPost(req, res) {
+    const userId = req.session.userId
     const errMsgs = req.query.err || null
-    res.render("newPost", {
-      errMsgs
+
+    User.findByPk(userId, {
+      attributes: [
+        "first_name",
+        "last_name",
+        "status"
+      ]
     })
+      .then(user => {
+        res.render("index", {
+          page: "newPost",
+          errMsgs,
+          user
+        })
+      })
+      .catch(err => {
+        res.send(err)
+      })
   }
 
   static newPostPost(req, res) {
@@ -73,14 +91,28 @@ class Controller {
   }
 
   static editPost(req, res) {
+    const userId = req.session.userId
     const postId = Number(req.params.id)
     const errMsgs = req.query.err || null
+    let user
 
-    Post.findByPk(postId)
+    User.findByPk(userId, {
+      attributes: [
+        "first_name",
+        "last_name",
+        "status"
+      ]
+    })
+      .then(userData => {
+        user = userData
+        return Post.findByPk(postId)
+      })
       .then(post => {
-        res.render("editPost", {
+        res.render("index", {
+          page: "editPost",
           post,
-          errMsgs
+          errMsgs,
+          user
         })
       })
       .catch(err => {
@@ -161,11 +193,14 @@ class Controller {
 
     User.findByPk(userId, {
       attributes: [
+        "first_name",
+        "last_name",
         "status"
       ]
     })
       .then(user => {
-        res.render("setStatus", {
+        res.render("index", {
+          page: "setStatus",
           user
         })
       })
@@ -192,6 +227,12 @@ class Controller {
       .catch(err => {
         res.send(err)
       })
+  }
+
+  static logout(req, res) {
+    delete req.session.isLogin
+    delete req.session.userId
+    res.redirect("/")
   }
 }
 

@@ -1,5 +1,5 @@
 const { Post, LikedPost, User } = require("../models")
-// const sequelize = require("sequelize")
+const formatDate = require("../helpers/formatDate")
 
 class Controller {
   static getHome(req, res) {
@@ -22,7 +22,8 @@ class Controller {
         res.render("index", {
           page: "home",
           user,
-          posts
+          posts,
+          formatDate
         })
       })
       .catch(err => {
