@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <header>
+      <div class="company">
+        <span><a style="color: white; font-weight: bold;" href="/">Manyverse</a></span>
+      </div>
+      <div class="profile">
+        <span style="color: white;">Welcome, <span style="color: #67ffb8;"><%= user.getFullname() %></span>!</span>
+        <span style="color: white;">#<%= user.status %></span>
+      </div>
+      <nav>
+        <a class="nav-btn" href="/">Home</a>
+        <a class="nav-btn" href="/user">My Page</a>
+        <a class="nav-btn" href="/user/logout">Logout</a>
+      </nav>
+    </header>
+    <div class="msg-container"></div>
+    <form id="form" action="">
+      <input id="input" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+<script>
+  let socket = io();
+
+  let messages = document.querySelector(".msg-container")
+  let form = document.getElementById('form');
+  let input = document.getElementById('input');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (input.value) {
+      socket.emit('chat message', {
+        user: `<%= user.getFullname() %>`,
+        msg: input.value});
+      input.value = '';
+    }
+  });
+
+  socket.on('chat message', function(chat) {
+    let item = document.createElement("div");
+    let user = document.createElement("span")
+    let msg = document.createElement("p")
+
+    if (chat.user === "<%= user.getFullname() %>") {
+      item.classList.add("chat-sender")
+    } else {
+      item.classList.add("chat-receive")
+    }
+
+    user.textContent = chat.user
+    msg.textContent = chat.msg
+
+    item.appendChild(user)
+    item.appendChild(msg)
+    
+    messages.appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight);
+  });
+</script>
+  </body>
+</html>

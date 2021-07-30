@@ -50,6 +50,36 @@ body {
   width: 40px;
 }
 
+.goto-chat {
+  position: fixed;
+  bottom: 150px;
+  right: 60px;
+}
+
+.goto-chat div {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #00be9f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 100ms;
+}
+
+.goto-chat div:focus,
+.goto-chat div:hover {
+  background-color: #00b185;
+}
+
+.goto-chat div:active {
+  background-color: #00c99d;
+}
+
+.goto-chat img {
+  width: 30px;
+}
+
 header {
   display: flex;
   flex-direction: row;
@@ -194,5 +224,89 @@ transform: scale(1.02);
 }
 
 .my-form button:active {
+  background-color: #00976a;
+}
+
+.msg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.chat-sender {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 10px;
+  background-color: #92ffed;
+  border-radius: 4px;
+  margin: 5px;
+  width: 600px;
+}
+
+.chat-sender span {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.chat-receive {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 10px;
+  background-color: #00be9f;
+  border-radius: 4px;
+  margin: 5px;
+  width: 600px;
+}
+
+.chat-receive span {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#form { 
+  background: #00000026;
+  padding: 0.25rem; 
+  position: fixed; 
+  bottom: 0; 
+  left: 0; 
+  right: 0; 
+  display: flex; 
+  height: 3rem; 
+  box-sizing: border-box; 
+  backdrop-filter: blur(10px); 
+}
+#input { 
+  border: none; 
+  padding: 0 1rem; 
+  flex-grow: 1; 
+  border-radius: 2rem; 
+  margin: 0.25rem; 
+}
+#input:focus { 
+  outline: none; }
+
+#form > button {
+  background: #333; 
+  border: none; 
+  padding: 0 1rem; 
+  margin: 0.25rem; 
+  border-radius: 3px; 
+  outline: none; 
+  color: #fff;
+}
+
+#form > button:focus,
+#form > button:hover {
+  background-color: #75ffe1;
+  color: #1a1a1a;
+}
+
+#form > button:active {
   background-color: #00976a;
 }

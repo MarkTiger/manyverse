@@ -14,7 +14,8 @@ module.exports = function(req, res, next) {
       if (post) {
         next()
       } else {
-        res.send("You do not have the permission to modify this post")
+        const error = "You do not have the permission to modify this post"
+        res.render("error", {err: error})
       }
     })
     .catch(err => {
