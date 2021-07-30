@@ -227,6 +227,14 @@ transform: scale(1.02);
   background-color: #00976a;
 }
 
+.my-form textarea {
+  background-color: #c6fff3;
+  border: 1px solid #004b33;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 1.3rem;
+}
+
 .msg-container {
   display: flex;
   flex-direction: column;
