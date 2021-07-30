@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manyverse</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <div class="company">
+      <span><a style="color: white; font-weight: bold;" href="/">Manyverse</a></span>
+    </div>
+    <div class="profile">
+      <span style="color: white;">Welcome, <span style="color: #67ffb8;"><%= user.getFullname() %></span>!</span>
+      <span style="color: white;">#<%= user.status %></span>
+    </div>
+    <nav>
+      <a class="nav-btn" href="/">Home</a>
+      <a class="nav-btn" href="/user">My Page</a>
+      <a class="nav-btn" href="/user/logout">Logout</a>
+    </nav>
+  </header>
+  
+  <div id="page-container">
+    <a class="new-post" href="/user/newpost"><div><img src="/add.png" alt="new post" /></div></a>
+    <a class="goto-chat" href="/manychat"><div><img src="/chat.png" alt="new post" /></div></a>
+
+    <% if (page === "home") { %>
+      <%- include("./home.ejs") %>
+    <% } else if (page === "user") { %>
+      <%- include("./user.ejs") %>
+    <% } else if (page === "setStatus") { %>
+      <%- include("./setStatus.ejs") %>
+    <% } else if (page === "newPost") { %>
+      <%- include("./newPost.ejs") %>
+    <% } else if (page === "editPost") { %>
+      <%- include("./editPost.ejs") %>
+    <% } %>
+  </div>
+</body>
+</html>

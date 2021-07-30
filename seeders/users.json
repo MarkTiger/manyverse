@@ -1,0 +1,23 @@
+[
+  {
+    "first_name": "Jaka",
+    "last_name": "Saja",
+    "email": "jakasaja@email.id",
+    "password": "1234",
+    "status": "Legend"
+  },
+  {
+    "first_name": "Joko",
+    "last_name": "Doang",
+    "email": "jokodoang@email.id",
+    "password": "1234",
+    "status": "Pro Player"
+  },
+  {
+    "first_name": "John",
+    "last_name": "",
+    "email": "john@email.id",
+    "password": "1234",
+    "status": "Stress"
+  }
+]

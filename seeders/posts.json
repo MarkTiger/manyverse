@@ -1,0 +1,22 @@
+[
+  {
+    "cover": "https://res.cloudinary.com/marktiger/image/upload/v1627496205/lr5ptcizcxwlxkluc0lq.png",
+    "message": "Cloudinary, all you uploading api needs",
+    "user_id": 1
+  },
+  {
+    "cover": "https://res.cloudinary.com/marktiger/image/upload/v1627604235/sample5_hmqdtt.jpg",
+    "message": "Socket.IO enables real-time, bidirectional and event-based communication. It works on every platform, browser or device, focusing equally on reliability and speed.",
+    "user_id": 2
+  },
+  {
+    "cover": "https://res.cloudinary.com/marktiger/image/upload/v1627604303/sample1_lszlyu.jpg",
+    "message": "My first post. This is awesome",
+    "user_id": 1
+  },
+  {
+    "cover": "https://res.cloudinary.com/marktiger/image/upload/v1627604303/sample2_b9tpen.jpg",
+    "message": "Mantap jiwa lah pokoknya. jempol.. jempol..",
+    "user_id": 2
+  }
+]
